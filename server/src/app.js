@@ -5,10 +5,14 @@ const { nodeEnv } = require('./config/env');
 const morgan = require('morgan');
 const path = require('path');
 
-const { clientOrigin } = require('./config/env');
+const { clientOrigin, isProd } = require('./config/env');
 const { notFound, errorHandler } = require('./middlewares/errorHandler');
 
 const app = express();
+
+if (isProd) {
+  app.set('trust proxy', 1)
+}
 
 // Middlewares globaux
 app.use(cors({ origin: clientOrigin, credentials: true }));

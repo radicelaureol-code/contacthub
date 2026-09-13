@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "install:all": "npm install && cd server && npm install && cd ../client && npm install",
-    "dev": "cd server && npm run dev",
+    "install": "npm install && npm install --prefix server && npm install --prefix client",
+    "dev": "npm run dev --prefix server",
     "build": "node scripts/build.js",
-    "seed": "cd server && node server/src/scripts/seed.js",
-    "start": "cd server && npm start"
+    "seed": "npm run seed --prefix server",
+    "start": "npm start --prefix server"
   },
   "dependencies": {
     "fs-extra": "^11.2.0"
