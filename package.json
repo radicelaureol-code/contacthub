@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "install": "npm install && npm install --prefix server && npm install --prefix client",
-    "dev": "npm run dev --prefix server",
+    "dev": "npm run dev --prefix client && npm run dev --prefix server",
     "build": "node scripts/build.js",
     "seed": "npm run seed --prefix server",
-    "start": "npm start --prefix server"
+    "start": "npm run start --prefix server"
   },
   "dependencies": {
     "fs-extra": "^11.2.0"
