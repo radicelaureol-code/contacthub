@@ -2,6 +2,8 @@
 
 Mini système de gestion des demandes de contact pour une entreprise : un formulaire public permet aux visiteurs d'envoyer une demande, et un espace d'administration permet aux employés de la consulter, la traiter et en suivre l'évolution.
 
+🔗 **Démo en ligne :** [contacthub.onrender.com](https://contacthub.onrender.com)
+
 ## ✨ Fonctionnalités
 
 **Partie publique**
@@ -33,7 +35,7 @@ Mini système de gestion des demandes de contact pour une entreprise : un formul
 
 contacthub/
 ├── scripts/
-│ └── build.js # build le frontend et le copie dans server/public
+│ └── copy-build.js # copie client/dist vers server/public
 ├── server/
 │ ├── src/
 │ │ ├── config/ # env, connexion DB, config SMTP
@@ -67,14 +69,11 @@ contacthub/
 
 ### Étapes
 
-1. Cloner le repo et installer les dépendances :
+1. Cloner le repo et installer toutes les dépendances (racine, `server/` et `client/` en une commande) :
 ```bash
    git clone https://github.com/<ton-user>/contacthub.git
    cd contacthub
-   npm install
-   cd server && npm install
-   cd ../client && npm install
-   cd ..
+   npm run install:all
 ```
 
 2. Configurer les variables d'environnement :
@@ -121,27 +120,34 @@ Accès :
 
 ## 🏗️ Build & production
 
-Build le frontend et le sert directement depuis le backend (un seul serveur, un seul port) :
+Le build se fait en deux étapes distinctes : build du frontend, puis copie du résultat dans `server/public/`.
 
 ```bash
+npm run build:client   # build Vite → génère client/dist/
+npm run copy:client    # copie client/dist/ vers server/public/
+# ou les deux d'un coup :
 npm run build
+
 npm start
 ```
 
-Accès unique : http://localhost:5000
+Accès unique, une fois lancé : http://localhost:5000
 
 ## 📜 Scripts disponibles (racine)
 
 | Commande | Description |
 |---|---|
+| `npm run install:all` | Installe les dépendances de la racine, `server/` et `client/` |
 | `npm run dev` | Lance le backend en mode développement (nodemon) |
 | `npm run seed` | Crée un compte employé (interactif) |
-| `npm run build` | Build le frontend et le copie dans `server/public` |
+| `npm run build:client` | Build uniquement le frontend (Vite) |
+| `npm run copy:client` | Copie `client/dist/` vers `server/public/` |
+| `npm run build` | Enchaîne `build:client` puis `copy:client` |
 | `npm start` | Lance le serveur en mode production |
 
 ## 🔒 Sécurité
 
 - Mots de passe hashés avec bcrypt
-- Session gérée via JWT stocké dans un cookie `httpOnly` (non accessible en JS côté client)
+- Session gérée via JWT stocké dans un cookie `httpOnly` (non accessible en JS côté client), `secure` en production
 - Validation stricte des entrées côté serveur (Zod)
 - Transitions de statut contrôlées côté serveur (pas de saut d'étape possible)
