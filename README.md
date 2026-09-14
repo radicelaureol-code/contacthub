@@ -33,6 +33,7 @@ Mini système de gestion des demandes de contact pour une entreprise : un formul
 
 ## 📁 Structure du projet
 
+```
 contacthub/
 ├── scripts/
 │ └── copy-build.js # copie client/dist vers server/public
@@ -58,7 +59,7 @@ contacthub/
 ├── context/ # AuthContext
 ├── hooks/ # useAuth, useRequests, useRequestDetail, ...
 └── services/ # appels API (axios)
-
+```
 
 ## 🚀 Installation
 
@@ -71,7 +72,7 @@ contacthub/
 
 1. Cloner le repo et installer toutes les dépendances (racine, `server/` et `client/` en une commande) :
 ```bash
-   git clone https://github.com/<ton-user>/contacthub.git
+   git clone https://github.com/<radicelaureol-code>/contacthub.git
    cd contacthub
    npm run install:all
 ```

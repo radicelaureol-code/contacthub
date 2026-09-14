@@ -32,7 +32,7 @@ function RequestListPage() {
     <div>
       <h1 className="text-2xl font-bold text-gray-900 mb-6">Demandes</h1>
 
-      <div className="flex flex-wrap gap-3 mb-6">
+      <div className="flex flex-col sm:flex-row flex-wrap gap-3 mb-6">
         <input
           type="text"
           placeholder="Rechercher (nom, email)..."
@@ -61,8 +61,8 @@ function RequestListPage() {
 
       {!loading && !error && (
         <>
-          <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
-            <table className="w-full text-sm">
+          <div className="bg-white border border-gray-200 rounded-lg overflow-x-auto">
+            <table className="w-full text-sm min-w-[640px]">
               <thead className="bg-gray-50 text-gray-500 text-left">
                 <tr>
                   <th className="px-4 py-3">Ticket</th>
